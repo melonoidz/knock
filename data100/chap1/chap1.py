@@ -1,7 +1,7 @@
 from pandas.plotting import scatter_matrix
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import pandas_profiling as pdp
 # 1 import and show data
 customer_master = pd.read_csv('customer_master.csv')
 # print(customer_data.head())
@@ -20,6 +20,8 @@ transaction = pd.concat([trans1_data, trans2_data], ignore_index=True)
 transaction_detail = pd.concat(
     [transdetail1_data, transdetail2_data], ignore_index=True)
 
+# file=pdp.ProfileReport(transaction_detail)
+# file.to_file("data.html")
 # 3 data join
 join_data = pd.merge(transaction_detail, transaction[[
     "transaction_id", "payment_date", "customer_id"]], on="transaction_id", how="left")
